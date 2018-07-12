@@ -1,7 +1,7 @@
 ﻿(function ($)
 {
     $.fn.bootstrapError = function (action, key, value, critical)
-    {       
+    {
         //This div contains the styling needed to bring all error messages to the bottom right corner
         var holderHtml = '<div class="fixed-bottom-right bootstrap-error-holding-div"></div>';
         //User to print at top of page; must go outside of holderHtml
@@ -45,7 +45,7 @@
 
             if (!(_this.find(".bootstrap-error-holding-div").length))
             {
-                _this.append(holderHtml);               
+                _this.append(holderHtml);
             }
 
             if (action === "add")
@@ -57,7 +57,7 @@
 
                 if (!(_this.find("." + key).length))
                 {
-                    _this.find(".bootstrap-error-holding-div").append(html);                    
+                    _this.find(".bootstrap-error-holding-div").append(html);
                     if (!email)
                     {
                         _this.find(".error-email").remove();
@@ -127,7 +127,8 @@ $(document).ready(function ()
     {
         if (settings.useGlobalError !== false)
         {
-            $(".bootstrap-error").bootstrapError("add", getShortUrl(settings.url), thrownError, settings.criticalError);
+            var errorMessage = jqxhr.responseJSON ? jqxhr.responseJSON : thrownError;
+            $(".bootstrap-error").bootstrapError("add", getShortUrl(settings.url), errorMessage, settings.criticalError);
         }
     });
 
